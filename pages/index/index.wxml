@@ -1,0 +1,165 @@
+<view class='page'>
+    <!--    顶部固定
+        <van-nav-bar
+                title="首页"
+                left-text=""
+                right-text=""
+                left-arrow
+                bind:click-left="onClickLeft"
+                bind:click-right="onClickRight"
+                safe-area-inset-top="{{false}}"
+        />-->
+
+
+    <!--    首页标签页-->
+    <viwe class="index" wx:if="{{indexModel}}">
+        <van-tabs animated bindtap="titleClick">
+            <van-tab wx:for="{{titleList}}" wx:for-item="item" title="{{item.title}}">
+<!--                发帖按钮-->
+                <van-sticky offset-top="80">
+                    <van-icon bindtap="addPost" name="{{addPost}}" color="red" size="48"
+                              style="position: fixed;top: 75%;left: 3%;"/>
+                </van-sticky>
+<!--                贴子卡片-->
+                <view wx:for="{{postList}}" wx:for-item="postItem">
+                    <van-skeleton title avatar row="3" loading="{{ itemLoading }}">
+                        <view class="van_skeleton">
+                            <i-card title="{{postItem.author}}" extra="{{postItem.title}}"
+                                    thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+                                <view slot="content" >
+<!--                                    <viwe style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">-->
+                                    <viwe class="wux-ellipsis--l2">
+                                        内容不错i四十长时间卡号大赛奥斯i欧莎救护车撒开了多
+                                        久斯科拉大家快来拉克沙克楼上的就撒开领导能力客户的接
+                                        口ask来得及萨卡拉你对面狂三打开了</viwe>
+                                    <image src="{{titleImage}}" mode="widthFix" style="width: 100%"/>
+
+                                </view>
+
+                                <view slot="footer">
+                                    <i-row style="height: 55rpx">
+                                        <i-col offset="11" span="5" i-class="col-class">
+                                            <i-icon type="{{postItem.likeFlag?'like_fill':'like'}}" size="22"
+                                                    color="{{postItem.likeFlag?'red':''}}"
+                                                    data-value="{{postItem.id}}" bindtap="likeClick"/>
+                                            <van-tag plain>{{postItem.like}}</van-tag>
+                                        </i-col>
+                                        <i-col span="5" i-class="col-class">
+                                            <i-icon type="interactive" size="22" bindtap="commClick"/>
+                                            <van-tag plain>{{postItem.comm}}</van-tag>
+                                        </i-col>
+                                        <i-col span="3" i-class="col-class">
+                                            <i-icon type="{{postItem.collectFlag?'collection_fill':'collection'}}"
+                                                    size="22" color="{{postItem.collectFlag?'yellow':''}}"
+                                                    data-value="{{postItem.id}}" bindtap="collectClick"/>
+<!--                                            <van-tag plain>{{postItem.collect}}</van-tag>-->
+                                        </i-col>
+                                    </i-row>
+                                </view>
+                            </i-card>
+                        </view>
+                    </van-skeleton>
+                </view>
+<!--                加载全部-->
+                <view>
+                    <i-load-more />
+                    <i-load-more tip="我也是有底线的！" loading="{{ false }}" />
+                    <i-load-more loading="{{ false }}" />
+                </view>
+            </van-tab>
+        </van-tabs>
+    </viwe>
+    <!--    搜索标签页-->
+
+
+    <view class="search" wx:if="{{searchModel}}">
+        <wux-search-bar bind:change="searchChange"
+                        bind:focus="searchFocus"
+                        bind:blur="searchBlur"
+                        bind:confirm="searchConfirm"
+                        bind:clear="searchClear"
+                        bind:cancel="searchCancel"
+                        showCancel
+                        clear
+                        maxlength="50"
+                        placeholder="搜索标题、作者"
+                        value="{{searchValue}}"/>
+        <van-notice-bar
+                left-icon="volume-o"
+                mode="closeable"
+                text="{{newsNotice}}"
+        />
+        <view wx:for="{{searchResult}}" wx:for-item="item" wx:key="{{id}}">
+
+        </view>
+        <wux-divider wx:if="{{divider}}">
+            <view class="loadmore">
+                <view class="loading">
+                    <van-icon name="close" loading="{{iconLoading}}"/>
+                </view>
+                <text class="text">正在加载</text>
+            </view>
+        </wux-divider>
+    </view>
+    <!--    我的标签页-->
+    <view class="my" wx:if="{{myModel}}">
+        <view class="userInfo">
+
+            <view bind:tap="avatarClick" style="width: 100px;width: 100px;display: inline-block;">
+<!--                <image class="avatar" src="https://img.yzcdn.cn/vant/cat.jpeg" role="img"></image>-->
+                <open-data class="avatar" type="userAvatarUrl"
+                           default-avatar="{{avatar}}"/>
+            </view>
+            <view bind:tap="userInfoClick" class="info">
+                <van-cell title="昵称" size="18px" >
+                    <open-data class="nickName" type="userNickName" lang="zh_CN" default-text="神秘人"/>
+                </van-cell>
+                <van-cell title="性别" size="12px">
+                    <van-icon slot="right-icon" name="{{man}}" class="custom-icon" />
+                </van-cell>
+            </view>
+
+        </view>
+        <view class="function">
+<!--            我的消息功能-->
+            <van-cell-group wx:for="{{myFunctionList}}" wx:for-item="item">
+                <van-cell
+                          title="{{item.title}}"
+                          link-type="navigateTo"
+                          url="{{item.url}}"
+                >
+                    <van-icon slot="right-icon"
+                              name="{{item.icon}}"
+                              class="custom-icon"
+                              color="{{item.color}}"
+                              size="14px"
+                              info="{{item.info}}"
+                    />
+                </van-cell>
+            </van-cell-group>
+<!--            系统功能-->
+            <van-cell-group custom-class="sysFunction">
+                <van-cell wx:for="{{sysFunctionList}}" wx:for-item="item"
+                        is-link
+                        title="{{item.title}}"
+                        link-type="navigateTo"
+                        url="{{item.url}}"
+                />
+            </van-cell-group>
+
+
+        </view>
+
+
+    </view>
+
+    <!--    底部导航栏-->
+    <van-tabbar active="{{ active }}"
+                active-color="#19be6b"
+                inactive-color="#80848f"
+                bindchange="tabChange">
+        <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
+        <van-tabbar-item name="search" icon="search" dot="{{searchDot}}">搜索</van-tabbar-item>
+        <van-tabbar-item name="my" icon="friends-o" info="{{myInfo}}">我的</van-tabbar-item>
+    </van-tabbar>
+</view>

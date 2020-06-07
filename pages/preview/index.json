@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "文章",
+  "usingComponents": {
+    "i-sticky": "/lib/iview-weapp/sticky/index",
+    "i-sticky-item": "/lib/iview-weapp/sticky-item/index",
+    "wux-timeago": "/lib/wux-weapp/timeago/index",
+    "wux-divider": "/lib/wux-weapp/divider/index"
+  }
+}

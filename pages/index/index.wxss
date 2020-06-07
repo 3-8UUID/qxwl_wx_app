@@ -1,0 +1,65 @@
+/*首页页面 样式*/
+.index {
+    height: 100%;
+    width: 100%;
+}
+
+.index .van_skeleton {
+    margin-bottom: 10px
+}
+
+/*搜索页面 样式*/
+.search {
+    height: 100%;
+    width: 100%;
+    background-color: #e8dcdc;
+}
+
+
+/*我的页面 样式*/
+.my {
+    height: 100%;
+    width: 100%;
+}
+
+.my .userInfo {
+    /*background-color: #dcf1ec;*/
+    background-color: #fff;
+    width: 100%;
+    height: 200rpx;
+    padding: 20px;
+
+}
+
+.my .avatar {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.my .info {
+    width: 180px;
+    display: inline-block;
+    overflow: hidden;
+    height: 80px;
+    margin: 10px;
+}
+.my .function{
+    background-color: #dcf1ec;
+
+    width: 100%;
+    margin-top: 15px;
+}
+
+.my .sysFunction{
+    margin-top: 10px;
+}
+.addPost{
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 5%
+}
+

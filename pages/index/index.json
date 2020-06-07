@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "wux-search-bar": "/lib/wux-weapp/search-bar/index",
+    "van-skeleton": "/lib/vant-weapp/skeleton/index",
+    "van-notice-bar": "/lib/vant-weapp/notice-bar/index",
+    "wux-divider": "/lib/wux-weapp/divider/index",
+    "i-load-more": "/lib/iview-weapp/load-more/index"
+  }
+}

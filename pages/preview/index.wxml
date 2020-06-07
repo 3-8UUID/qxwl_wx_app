@@ -1,0 +1,44 @@
+<view class="page">
+    <i-sticky scrollTop="{{scrollTop}}">
+        <i-sticky-item i-class="i-sticky-demo-title">
+            <view slot="title">
+<!--                吸顶标题-->
+                <viwe class="sticky-top">
+                    <i-row>
+                        <i-col span="5">
+                            <i-avatar src="{{avatar}}" shape="square"></i-avatar>
+<!--                            <image class="avatar" src="{{avatar}}"></image>-->
+                        </i-col>
+                        <i-col span="10">
+                            <view class="wux-text--center other">
+                                <van-tag plain type="primary" size="large">作者名称</van-tag>
+                            </view>
+                        </i-col>
+                        <i-col span="9">
+                            <view class="wux-text--center other">
+                                <wux-timeago to="{{ now }}" refreshable/>
+                            </view>
+                        </i-col>
+                    </i-row>
+                </viwe>
+            </view>
+            <view slot="content">
+<!--                标题-->
+                <view wx:if="{{title}}" class="wux-text--center">
+                    <i class="title-view">{{title}}</i>
+                </view>
+
+<!--                文章内容-->
+                <view wx:for="{{contentList}}" wx:for-item="item" wx:for-index="index">
+                    <wux-divider dashed>{{(index+1)}}</wux-divider>
+<!--                    <image src="{{item.imgPath}}" mode="widthFix" style="width: 100%"/>-->
+                    <viwe style="text-indent:56rpx">
+                        <text class="body-content">{{item.content}}</text>
+                    </viwe>
+                    <image src="{{item.imgPath}}" mode="widthFix"
+                           style="width: 100%;margin-bottom: 20rpx"/>
+                </view>
+            </view>
+        </i-sticky-item>
+    </i-sticky>
+</view>

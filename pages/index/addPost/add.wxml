@@ -1,0 +1,82 @@
+<view class='page'>
+<!--    轻提示-->
+    <van-toast id="van-toast" />
+    <van-dialog id="van-dialog" />
+    <wux-dialog id="wux-dialog" />
+    <wux-dialog id="wux-dialog--alert" />
+    <view wx:if="{{indexFlag}}">
+<!--    <view wx:if="{{false}}">-->
+        <view class="top">
+            <view class="wux-text--center" style="font-size: 28px">开始创作</view>
+            <view class="wux-text--center" style="font-size: 16px">您还添加20张美图哦~</view>
+        </view>
+        <view class="center">
+            <view class="wux-text--center">
+                <van-icon bindtap="addImage" data-value="101" name="{{addImage}}" size="48"/>
+            </view>
+            <view class="wux-text--center" style="font-size: 16px">添加图片</view>
+        </view>
+
+    </view>
+
+    <view wx:if="{{!indexFlag}}" class="page-index">
+<!--    <view wx:if="{{true}}" class="page-index">-->
+        <!--    标题头-->
+        <view class="header-container" style="background-image:url('{{titleImg}}')">
+            <view class="wux-text--left" bindtap="changeTitle"
+                  style="font-size: 24px;color: #c7c7c7">{{addTitle}}</view>
+<!--            <image class="header-bg" src="{{titleImg}}"></image>-->
+            <view class="changeTitleImage" bindtap="addImage" data-value="102">
+                <van-tag mark size="large">更改封面</van-tag>
+            </view>
+        </view>
+<!--        添加内容图标-->
+        <view class="wux-text--center add-icon">
+
+            <i-icon type="add" color="#fff" size="18" bindtap="addIconHandler" data-index="{{-1}}"
+                    style="background-color: #c7c7c7;border:#c7c7c7 2px solid;border-radius: 50%;"/>
+
+        </view>
+        <!--   内容-->
+        <!-- wx:for-item="item" wx:for-index="index"-->
+        <view wx:for="{{contentList}}" wx:for-item="item" wx:for-index="index">
+            <view class="body-context">
+                <i-icon type="close" color="red" size="15" bindtap="delContent" data-index="{{index}}"/>
+                <i-row style="height: 110px">
+                    <i-col span="7" offset="1">
+                        <view bindtap="changeImg" data-index="{{index}}">
+                            <image mode="aspectFit" src="{{item.imgPath}}"
+                                                style="height: 115px;width: 120px"></image>
+                        </view>
+                    </i-col>
+                    <i-col span="15" offset="1">
+                    <textarea placeholder="点击添加文字描述" value="{{item.content}}"
+                              bindinput="saveContext" data-value="{{item}}" data-index="{{index}}"
+                              style="width: 220px;height: 120px;" maxlength="-1"/>
+                    </i-col>
+                </i-row>
+            </view>
+            <!--        添加内容图标-->
+            <view class="wux-text--center add-icon">
+                <i-icon type="add" color="#fff" size="18" bindtap="addIconHandler" data-index="{{index}}"
+                        style="background-color: #c7c7c7;border:#c7c7c7 2px solid;border-radius: 50%;"/>
+            </view>
+        </view>
+      
+        <!--    底部按钮-->
+        <view class="bottom-bag"></view>
+        <view class="bottom_btn">
+            <i-row>
+                <i-col span="12">
+                    <wux-button block type="calm" bindtap="previewClick"
+                                loading="{{previewLoading}}">预览</wux-button>
+                </i-col>
+                <i-col span="12">
+                    <wux-button block type="royal" bindtap="releaseClick"
+                                loading="{{releaseLoading}}">发布</wux-button>
+                </i-col>
+            </i-row>
+        </view>
+    </view>
+
+</view>

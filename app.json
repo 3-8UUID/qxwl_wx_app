@@ -1,0 +1,63 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+
+  "usingComponents": {
+    "van-tabbar": "/lib/vant-weapp/tabbar/index",
+    "van-image": "/lib/vant-weapp/image/index",
+    "van-tabbar-item": "/lib/vant-weapp/tabbar-item/index",
+    "van-nav-bar": "/lib/vant-weapp/nav-bar/index",
+    "van-tab": "/lib/vant-weapp/tab/index",
+    "van-tabs": "/lib/vant-weapp/tabs/index",
+    "wux-card": "/lib/wux-weapp/card/index",
+    "wux-wing-blank": "/lib/wux-weapp/wing-blank/index",
+    "i-card": "/lib/iview-weapp/card/index",
+    "van-button": "lib/vant-weapp/button/index",
+    "van-dialog": "lib/vant-weapp/dialog/index",
+    "van-field": "lib/vant-weapp/field/index",
+    "van-loading": "lib/vant-weapp/loading/index",
+    "van-checkbox": "lib/vant-weapp/checkbox/index",
+    "van-icon": "lib/vant-weapp/icon/index",
+    "van-search": "lib/vant-weapp/search/index",
+    "van-toast": "lib/vant-weapp/toast/index",
+    "van-tag": "lib/vant-weapp/tag/index",
+    "van-cell": "lib/vant-weapp/cell/index",
+    "van-cell-group": "lib/vant-weapp/cell-group/index",
+    "van-popup": "lib/vant-weapp/popup/index",
+    "van-area": "lib/vant-weapp/area/index",
+    "van-steps": "lib/vant-weapp/steps/index",
+    "van-stepper": "lib/vant-weapp/stepper/index",
+    "van-switch": "lib/vant-weapp/switch/index",
+    "van-notice-bar": "lib/vant-weapp/notice-bar/index",
+    "van-swipe-cell": "lib/vant-weapp/swipe-cell/index",
+    "van-action-sheet": "lib/vant-weapp/action-sheet/index",
+    "wux-toptips": "lib/wux-weapp/toptips/index",
+    "wux-filterbar": "lib/wux-weapp/filterbar/index",
+    "wux-upload": "lib/wux-weapp/upload/index",
+    "wux-cell-group": "lib/wux-weapp/cell-group/index",
+    "wux-cell": "lib/wux-weapp/cell/index",
+    "wux-calendar": "lib/wux-weapp/calendar/index",
+    "i-icon": "lib/iview-weapp/icon/index",
+    "i-row": "lib/iview-weapp/row/index",
+    "i-col": "lib/iview-weapp/col/index",
+    "i-modal": "lib/iview-weapp/modal/index",
+    "i-badge": "lib/iview-weapp/badge/index",
+    "i-input-number": "lib/iview-weapp/input-number/index",
+    "i-swipeout": "lib/iview-weapp/swipeout/index",
+    "i-avatar": "lib/iview-weapp/avatar/index",
+    "i-rate": "lib/iview-weapp/rate/index",
+    "i-button": "lib/iview-weapp/button/index"
+  }
+
+
+}

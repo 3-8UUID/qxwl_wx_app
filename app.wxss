@@ -1,0 +1,14 @@
+@import 'lib/wux-weapp/styles/index.wxss';
+
+/**app.wxss**/
+
+.page {
+  height: 100%;
+  width: 100%;
+  background-color: #dbd4c0;
+}
+page{
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
+}
