@@ -1,5 +1,5 @@
 const app = getApp();
-
+const req = require('../../utils/util')
 Page({
 
     /**
@@ -14,32 +14,32 @@ Page({
         myInfo: 3,
         titleList: [
             {
-                title: "推荐",
+                typeName: "推荐",
                 context: "",
             }, {
-                title: "关注",
+                typeName: "关注",
                 context: "",
                 dot: true
             }, {
-                title: "水库宝塔",
+                typeName: "水库宝塔",
                 context: "",
             }, {
-                title: "乡村美食",
+                typeName: "乡村美食",
                 context: "",
             }, {
-                title: "清溪博物馆",
+                typeName: "清溪博物馆",
                 context: "",
             }, {
-                title: "瑶族文化",
+                typeName: "瑶族文化",
                 context: "",
             }, {
-                title: "中国香柚之乡",
+                typeName: "中国香柚之乡",
                 context: "",
             }, {
-                title: "女书",
+                typeName: "女书",
                 context: "",
             }, {
-                title: "其他",
+                typeName: "其他",
                 context: "",
             },
         ],
@@ -152,6 +152,7 @@ Page({
             myFunctionList: myFunctionList,
             sysFunctionList: sysFunctionList
         })
+        this.loadData();
         setTimeout(() => {
             this.setData({
                 itemLoading: false,
@@ -174,6 +175,7 @@ Page({
         wx.setNavigationBarTitle({
             title: this.data.navigationBarTitle,
         })
+        this.loadData();
     },
 
     /**
@@ -217,6 +219,18 @@ Page({
      */
     loadData() {
         console.log("数据加载中。。。")
+        req.request({
+            url: app.globalData.reqUrlBase + '/qxwl/anon/getTypeList',
+            method: 'POST',
+            data: ''
+        }).then((res) => {
+            console.log(res);
+            if (res.success){
+                this.setData({
+                    // titleList: res.result
+                })
+            }
+        })
     },
 
     /**
@@ -275,7 +289,7 @@ Page({
      * @param e
      */
     titleClick(e) {
-
+        console.log('[e]', e);
     },
     /**
      * 喜欢点击事件
@@ -352,9 +366,9 @@ Page({
      * 点击发布
      * @param e
      */
-    addPost(e){
+    addPost(e) {
         wx.navigateTo({
-          url: '/pages/index/addPost/add',
+            url: '/pages/index/addPost/add',
         })
 
     },

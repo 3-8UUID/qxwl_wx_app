@@ -87,5 +87,6 @@ App({
         ],
         domain: 'http://47.102.208.247/',
         imgBase: 'http://47.102.208.247//download/image/',
+        reqUrlBase: 'http://47.102.208.247:9090',
     }
 })

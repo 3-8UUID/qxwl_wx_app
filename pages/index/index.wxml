@@ -14,7 +14,7 @@
     <!--    首页标签页-->
     <viwe class="index" wx:if="{{indexModel}}">
         <van-tabs animated bindtap="titleClick">
-            <van-tab wx:for="{{titleList}}" wx:for-item="item" title="{{item.title}}">
+            <van-tab wx:for="{{titleList}}" wx:for-item="item" title="{{item.typeName}}">
 <!--                发帖按钮-->
                 <van-sticky offset-top="80">
                     <van-icon bindtap="addPost" name="{{addPost}}" color="red" size="48"
