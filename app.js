@@ -85,8 +85,20 @@ App({
             },
 
         ],
+        typeList: [],
         domain: 'http://47.102.208.247/',
         imgBase: 'http://47.102.208.247//download/image/',
         reqUrlBase: 'http://47.102.208.247:9090',
+        otherType:[
+            {
+                typeName: "关注",
+                context: "",
+                dot: true
+            },
+            {
+                typeName: "推荐",
+                context: "",
+            },
+        ]
     }
 })

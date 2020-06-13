@@ -1,11 +1,11 @@
 <view class='page'>
-<!--    轻提示-->
-    <van-toast id="van-toast" />
-    <van-dialog id="van-dialog" />
-    <wux-dialog id="wux-dialog" />
-    <wux-dialog id="wux-dialog--alert" />
+    <!--    轻提示-->
+    <van-toast id="van-toast"/>
+    <van-dialog id="van-dialog"/>
+    <wux-dialog id="wux-dialog"/>
+    <wux-dialog id="wux-dialog--alert"/>
     <view wx:if="{{indexFlag}}">
-<!--    <view wx:if="{{false}}">-->
+        <!--    <view wx:if="{{false}}">-->
         <view class="top">
             <view class="wux-text--center" style="font-size: 28px">开始创作</view>
             <view class="wux-text--center" style="font-size: 16px">您还添加20张美图哦~</view>
@@ -20,17 +20,18 @@
     </view>
 
     <view wx:if="{{!indexFlag}}" class="page-index">
-<!--    <view wx:if="{{true}}" class="page-index">-->
+        <!--    <view wx:if="{{true}}" class="page-index">-->
         <!--    标题头-->
         <view class="header-container" style="background-image:url('{{titleImg}}')">
             <view class="wux-text--left" bindtap="changeTitle"
-                  style="font-size: 24px;color: #c7c7c7">{{addTitle}}</view>
-<!--            <image class="header-bg" src="{{titleImg}}"></image>-->
+                  style="font-size: 24px;color: #c7c7c7">{{addTitle}}
+            </view>
+            <!--            <image class="header-bg" src="{{titleImg}}"></image>-->
             <view class="changeTitleImage" bindtap="addImage" data-value="102">
                 <van-tag mark size="large">更改封面</van-tag>
             </view>
         </view>
-<!--        添加内容图标-->
+        <!--        添加内容图标-->
         <view class="wux-text--center add-icon">
 
             <i-icon type="add" color="#fff" size="18" bindtap="addIconHandler" data-index="{{-1}}"
@@ -46,7 +47,7 @@
                     <i-col span="7" offset="1">
                         <view bindtap="changeImg" data-index="{{index}}">
                             <image mode="aspectFit" src="{{item.imgPath}}"
-                                                style="height: 115px;width: 120px"></image>
+                                   style="height: 115px;width: 120px"></image>
                         </view>
                     </i-col>
                     <i-col span="15" offset="1">
@@ -62,21 +63,35 @@
                         style="background-color: #c7c7c7;border:#c7c7c7 2px solid;border-radius: 50%;"/>
             </view>
         </view>
-      
+
         <!--    底部按钮-->
         <view class="bottom-bag"></view>
         <view class="bottom_btn">
             <i-row>
                 <i-col span="12">
                     <wux-button block type="calm" bindtap="previewClick"
-                                loading="{{previewLoading}}">预览</wux-button>
+                                loading="{{previewLoading}}">预览
+                    </wux-button>
                 </i-col>
                 <i-col span="12">
-                    <wux-button block type="royal" bindtap="releaseClick"
-                                loading="{{releaseLoading}}">发布</wux-button>
+                    <wux-button block type="royal" bindtap="typeCheck"
+                                loading="{{releaseLoading}}">发布
+                    </wux-button>
                 </i-col>
             </i-row>
         </view>
+        <!--     ok-text="确认发布" cancel-text="取消"   弹出框-->
+        <i-modal title="请选择文章类型" visible="{{ typeOptVisible }}"
+                 actions="{{ actionBtn }}"
+                 bind:click="releaseClick" >
+           <view>
+               <i-radio-group current="{{currentType}}" bindchange="handleTypeChange">
+                   <i-radio wx:for="{{typeList}}" position="right" wx:key="{{item.id}}" value="{{item.typeName}}">
+                   </i-radio>
+               </i-radio-group>
+           </view>
+        </i-modal>
+
     </view>
 
 </view>

@@ -226,9 +226,11 @@ Page({
         }).then((res) => {
             console.log(res);
             if (res.success){
+                let titleList = app.globalData.otherType.concat(res.result);
                 this.setData({
-                    // titleList: res.result
+                    titleList: titleList
                 })
+                app.globalData.typeList = res.result;
             }
         })
     },

@@ -1,9 +1,12 @@
 {
   "navigationBarTitleText": "文章发布",
   "usingComponents": {
+    "i-radio-group": "/lib/iview-weapp/radio-group/index",
+    "i-radio": "/lib/iview-weapp/radio/index",
     "i-input": "/lib/iview-weapp/input/index",
     "i-switch": "/lib/iview-weapp/switch/index",
     "i-panel": "/lib/iview-weapp/panel/index",
+    "i-modal": "/lib/iview-weapp/modal/index",
     "wux-dialog": "/lib/wux-weapp/dialog/index",
     "wux-button": "/lib/wux-weapp/button/index",
     "wux-image ": "/lib/wux-weapp/image/index",

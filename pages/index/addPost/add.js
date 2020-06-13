@@ -23,6 +23,19 @@ Page({
         indexFlag: true, //是否上传了图片
         previewLoading: false,
         releaseLoading: false,
+        typeOptVisible: false,
+        typeList: [],
+        currentType: '',
+        actionBtn: [
+            {
+                name: '取消'
+            },
+            {
+                name: '发布',
+                color: '#05adef',
+                loading: false
+            }
+        ]
     },
     /**
      * 生命周期函数--监听页面加载
@@ -349,16 +362,130 @@ Page({
     /**
      * 发布按钮
      */
-    releaseClick() {
+    typeCheck() {
         let that = this;
         that.setData({
-            releaseLoading: true
+            // releaseLoading: true
+            typeOptVisible: true,
+            typeList: app.globalData.typeList
         })
-
-        setTimeout(() => {
-            that.setData({
-                releaseLoading: false
-            })
-        }, 3000)
+        console.log(that.data.typeList);
     },
+
+    /**
+     * 选择文章类型
+     * @param e
+     */
+    handleTypeChange({ detail = {} }){
+        this.setData({
+            currentType: detail.value
+        });
+    },
+
+    /**
+     * 发布按钮
+     */
+    releaseClick({ detail }) {
+        console.log('[detail]',detail);
+        let that = this;
+        if (detail.index === 0) {
+            that.setData({
+                typeOptVisible: false
+            });
+        } else {
+            const action = that.data.actionBtn;
+            action[1].loading = true;
+
+            this.setData({
+                actionBtn: action
+            });
+
+            let typeId = '';
+            const types = that.data.typeList;
+            types.forEach((item,index)=>{
+                let type = that.data.currentType;
+                if (type){
+                    if (item.typeName = type){
+                        typeId = item.id
+                    }
+                }else {
+                    let len = types.length - 1;
+                    typeId = types[len].id
+
+                }
+            })
+            const requestBo = {
+                postTitle: that.data.addTitle,
+                postTitleImg: that.data.titleImg,
+                contentList: that.data.contentList,
+                typeId: typeId
+            }
+
+            let filePaths = [that.data.titleImg];
+            let url = 'http://localhost:9090/qxwl/source/fileUp';
+            this.uploadFile(url,'',that.data.titleImg)
+
+            console.log(requestBo);
+
+
+            setTimeout(() => {
+                action[1].loading = false;
+                this.setData({
+                    typeOptVisible: false,
+                    actionBtn: action
+                });
+
+
+/*
+                $Message({
+                    content: '发布成功！',
+                    type: 'success'
+                });*/
+                //跳转到首页
+            }, 2000);
+        }
+    },
+    /**
+     * 文件上传
+     * @param url 上传文件地址
+     * @param data 上传参数
+     * @param path 上传临时路径
+     * @returns {{success}|any}
+     */
+    uploadFile(url, data, path) {
+        let that = this;
+        let header = {
+            // auth_token: wx.getStorageSync('auth_token'),
+            auth_token: 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI1OTg4NTUsImlhdCI6MTU5MjAzODQyMCwicm9sIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwidXNlcm5hbWUiOiJrdWFuIn0.VNsmGAQYQnPq0F7px0_GPcrrFN1WqyIu25PJZVlnKE4',
+        }
+        wx.uploadFile({
+            // url: app.globalData.domain + url,
+            url: url,
+            filePath: path,
+            name: 'file',
+            formData: data,
+            header: header,
+            timeout: 10000,//10s超时
+            success(res) {
+                console.log('[res]',res);
+                //json字符串 需用JSON.parse 转
+                if (200 == res.statusCode) {
+                    let jsonResult = JSON.parse(res.data)
+                    console.log('jsonResult');
+                    console.log(jsonResult);
+                    if (jsonResult.success) {
+                        Toast.success("上传成功！");
+
+                        return jsonResult;
+                    } else {
+                        Toast.fail('网络连接失败!');
+                    }
+                } else {
+                    Toast.fail('上传失败，网络连接超时');
+                }
+            }
+        })
+    },
+
+
 })
