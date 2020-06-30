@@ -423,10 +423,10 @@ Page({
 
             let filePaths = [that.data.titleImg];
             let url = 'http://localhost:9090/qxwl/source/fileUp';
+            // let url = app.globalData.reqUrlBase + '/qxwl/source/fileUp';
             this.uploadFile(url,'',that.data.titleImg)
 
             console.log(requestBo);
-
 
             setTimeout(() => {
                 action[1].loading = false;
@@ -456,7 +456,8 @@ Page({
         let that = this;
         let header = {
             // auth_token: wx.getStorageSync('auth_token'),
-            auth_token: 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI1OTg4NTUsImlhdCI6MTU5MjAzODQyMCwicm9sIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwidXNlcm5hbWUiOiJrdWFuIn0.VNsmGAQYQnPq0F7px0_GPcrrFN1WqyIu25PJZVlnKE4',
+            // auth_token: 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI3NjM3MzMsImlhdCI6MTU5MjIwMzI5Nywicm9sIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwidXNlcm5hbWUiOiJrdWFuIn0.UlQd_p8i9loAgSpjrm1vsULGOosbeoVei_LrLZLoe7k',
+            auth_token: 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI3NjUyMjAsImlhdCI6MTU5MjIwNDc4NCwicm9sIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwidXNlcm5hbWUiOiJrdWFuIn0.HX-qlJMX5YU5kOe57Y1wN9lar_rw57KX3QlP00flUmY',
         }
         wx.uploadFile({
             // url: app.globalData.domain + url,
